@@ -12,7 +12,11 @@ import * as THREE from 'three';
 
 const canvas = document.querySelector('#three-canvas');
 // const renderer = new THREE.WebGL1Renderer({ canvas: canvas });
-const renderer = new THREE.WebGL1Renderer({ canvas });
+const renderer = new THREE.WebGL1Renderer({ 
+    canvas,
+    // 모서리 부드럽게 -> 성능은 좀 떨어짐.. 
+    antialias: true
+ });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Scene 장면/요소 만들기
@@ -30,5 +34,20 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 // 카메라위치세팅
+camera.position.x = 1;
+camera.position.y = 2;
 camera.position.z = 5;
 scene.add(camera);
+
+// 물체세팅 (Mesh = 모양(Geometry) + 재질(Material))
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({
+    // color: 0xff0000
+    // color: '#ff0000'
+    color: 'red'
+});
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// 그려주기
+renderer.render(scene, camera);
