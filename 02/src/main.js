@@ -37,6 +37,30 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.x = 1;
 camera.position.y = 2;
 camera.position.z = 5;
+
+// Orthographic Camera (직교카메라) -> 자주는 안 하고 특정한 목적이 있을 때 사용함
+// const camera = new THREE.OrthographicCamera(
+//     // left
+//     -(window.innerWidth / window.innerHeight),
+//     // height
+//     window.innerWidth / window.innerHeight,
+//     // top
+//     1,
+//     // bottom
+//     -1,
+//     // near
+//     0.1,
+//     // far
+//     1000
+// );
+
+// camera.position.x = 1;
+// camera.position.y = 2;
+// camera.position.z = 5;
+// camera.lookAt(0, 0, 0);
+// camera.zoom = 0.5;
+// camera.updateProjectionMatrix();
+
 scene.add(camera);
 
 // 물체세팅 (Mesh = 모양(Geometry) + 재질(Material))
