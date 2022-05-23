@@ -14,3 +14,21 @@ const canvas = document.querySelector('#three-canvas');
 // const renderer = new THREE.WebGL1Renderer({ canvas: canvas });
 const renderer = new THREE.WebGL1Renderer({ canvas });
 renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Scene 장면/요소 만들기
+const scene = new THREE.Scene();
+
+// camera 만들기(원근카메라)
+const camera = new THREE.PerspectiveCamera(
+    // 시야각
+    75,
+    // 종횡비(aspect)
+    window.innerWidth / window.innerHeight,
+    // near
+    0.1,
+    // far
+    1000
+);
+// 카메라위치세팅
+camera.position.z = 5;
+scene.add(camera);
