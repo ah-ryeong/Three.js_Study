@@ -9,8 +9,6 @@ export default function example() {
         antialias: true,
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    // console.log(window.devicePixelRatio);
-    // Three.js에서 고해상도로 표시해주고 싶을 때 사용
     renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
 
     // Scene 장면/요소 만들기
@@ -37,30 +35,28 @@ export default function example() {
     // 물체세팅 (Mesh = 모양(Geometry) + 재질(Material))
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshStandardMaterial({
-        // MeshBasicMaterial -> 얘는 빛의 영향을 안 받는 애임
         color: 'red'
     });
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
+    let oldTime = Date.now();
+
     // 그려주기
-    const clock = new THREE.Clock();
     function draw() {
-        // console.log(clock.getElapsedTime());
-        const time = clock.getElapsedTime();
-        // 각도는 Radian을 사용함
-        // 360도는 2파이
-        // mesh.rotation.y += 0.1;
-        // mesh.rotation.y += THREE.MathUtils.degToRad(1);
-        mesh.rotation.y = 2 * time;
-        mesh.position.y += 0.01;
-        // mesh.position.y = time;
+        // console.log(Date.now());
+        const newTime = Date.now();
+        const deltaTime = newTime - oldTime;
+        oldTime = newTime;
+
+        mesh.rotation.y += deltaTime * 0.002;
+        mesh.position.y += deltaTime * 0.001;
+
         if(mesh.position.y > 5) {
             mesh.position.y = 0;
         }
         renderer.render(scene, camera);
 
-        // window.requestAnimationFrame(draw);
         renderer.setAnimationLoop(draw);
     }
 
