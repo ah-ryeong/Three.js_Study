@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
+import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls';
 
 
 export default function example() {
@@ -36,10 +36,11 @@ export default function example() {
 	scene.add(directionalLight);
 
 	// Controls
-	const controls = new FlyControls(camera, renderer.domElement);
-	// constrols.rollSpeed = 0.05;
-	// constrols.movementSpeed = 3;
-	controls.dragToLook = true;
+	const controls = new FirstPersonControls(camera, renderer.domElement);
+	// controls.movementSpeed = 5;
+	// controls.activeLook = false;
+	// controls.lookSpeed = 0.1;
+	controls.autoForward = true;
 
 	// Mesh
 	const geometry = new THREE.BoxGeometry(1, 1, 1);
